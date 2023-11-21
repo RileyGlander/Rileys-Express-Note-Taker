@@ -6,6 +6,8 @@
 - What problem does it solve? It solves the problem of trying to remember everything. With this project you can write whatever it is you want to jot down so you can look back at it at any point
 - What did you learn? While creating this application I was able to learn and get a better understanding of express and server side routing.
 
+## Video
+https://drive.google.com/file/d/1MsVJn964lQwP7yGs148OIwbEIO0mm9IX/view
 
 ## Installation
 You can install this with git bash by typing in 'git clone Replace this with link' to wherever you want the repository to be installed on your computer.
