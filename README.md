@@ -11,7 +11,7 @@
 You can install this with git bash by typing in 'git clone Replace this with link' to wherever you want the repository to be installed on your computer.
 
 ## Usage
-You can use this by getting the repository downloaded with the instructions above. You can then open it with Visual Studio Code. You want to start the server by right clicking on server.js, opening it in integegrated terminal and typing in 'node server.js. It will open the server and from there you want to type in your browser 'http://localhost:3001/'. It will show the website where you can click Get Started and manage your notes. When you are finished with the application just go back to Visual Code Studio to where the terminal you used before was and pressing 'CTR C'. This will end the server.
+You can use this by getting the repository downloaded with the instructions above. You can then open it with Visual Studio Code. You want to start the server by right clicking on server.js, opening it in integegrated terminal and typing in 'node server.js. It will open the server and from there you want to type in your browser 'http://localhost:3001/'. It will show the website where you can click Get Started and manage your notes. When you are finished with the application just go back to Visual Code Studio to where the terminal you used before was and pressing 'CTRL C'. This will end the server.
 
 ## Known Issues
 -Saving, adding notes and deleting notes aren't functional.
