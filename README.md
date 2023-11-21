@@ -1,4 +1,4 @@
-# WeeklyChallenge11
+# Note Taker App
 
 ## Description
 - What was your motivation? As someone who tends to take lots of notes it is nice to have a place where I can store, change or deltete them at any point. 
