@@ -11,6 +11,7 @@
 ![Screenshot (100)](https://github.com/RileyGlander/Rileys-Express-Note-Taker/assets/142702948/2a3cfcee-3d57-4aa8-aa2e-e6e69545e6a7)
 
 ## Video
+I understand the video wasn't required but I thought it might help.
 https://drive.google.com/file/d/1MsVJn964lQwP7yGs148OIwbEIO0mm9IX/view
 
 ## Installation
