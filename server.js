@@ -118,15 +118,36 @@ app.post('/api/notes', (req, res) => {
 //remove the note with the given id property, and then 
 //rewrite the notes to the db.json file.
 app.delete ("/api/notes/:id", (req, res) => {
-  
+  const id = req.params.id;
+
+  // Read the existing notes from db.json file
   fs.readFile('./db/db.json', 'utf8', (err, data) => {
-    if (err) {
-        console.error(err);
-        return res.status(500).json({ error: 'Failed to read notes data' });
-    }
-      
-  })
-})
+      if (err) {
+          console.error(err);
+          return res.status(500).json({ error: 'Failed to read notes data' });
+      }
+
+      let notes = JSON.parse(data);
+
+      // Filter out the note with the provided ID
+      const updatedNotes = notes.filter(note => note.id !== id);
+
+      // Check if a note was removed
+      if (!updatedNotes) {
+            return res.status(404).json({ error: 'Note not found' });
+          }
+      // Write the updated notes array back to the db.json file
+      fs.writeFile('./db/db.json', JSON.stringify(updatedNotes, null, 2), 'utf8', (err) => {
+          if (err) {
+              console.error(err);
+              return res.status(500).json({ error: 'Failed to save notes data' });
+          }
+
+          // Send a success response
+          res.status(200).json({ status: 'success' });
+      });
+  });
+});
 
 //GET * should return the index.html file.
 app.get("*", (req, res) => {
