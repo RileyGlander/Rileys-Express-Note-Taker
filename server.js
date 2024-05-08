@@ -1,13 +1,14 @@
 const express = require("express")
-const fs = require("fs")
 const path = require('path');
+const fs = require("fs")
 const uuid = require('./helpers/uuid');
-const notes = require('./db/db');
+const notesData = require('./db/db.json');
+const { readAndAppend } = require("./helpers/fsUtils");
 
 
-//const bookData = require("./data/books.json")
-//res.json(bookData);
-const PORT = process.env.PORT || 3001;
+
+//res.json(notesData);
+const PORT = 3001;
 
 const app = express();
 
@@ -17,24 +18,32 @@ app.use(express.urlencoded({ extended: true }));
 app.use(express.static('public'));
 
 //should return the notes.html file.
-app.get('/notes', (req, res) => {
-    res.sendFile(path.join(__dirname, '/public/notes.html'))
-})
+app.get("/notes", (req, res) => {
+    res.sendFile(path.join(__dirname, './public/notes.html'))
+});
 
 
-//GET * should return the index.html file.
-app.get("*", (req, res) => {
-    res.sendFile(path.join(__dirname, '/public/index.html'))
 
-})
 
 
 //GET /api/notes should read the db.json file and 
 //return all saved notes as JSON.
 app.get("/api/notes", (req, res) => {
-    console.info(`${req.method} request received for saved notes`);
-})
+    console.info(`${req.method} request received to get notes`);
 
+    fs.readFile('./db/db.json', 'utf8', (err, data) => {
+      if (err) {
+          console.error(err);
+          return res.status(500).json({ error: 'Failed to read notes data' });
+      }
+
+      // Parse existing notes data into an array
+      const notes = JSON.parse(data);
+
+      // Send the saved notes back to the client
+      res.status(200).json(notes);
+  });
+});
 
 //POST /api/notes should receive a new note 
 //to save on the request body, add it to the db.json file, 
@@ -42,32 +51,58 @@ app.get("/api/notes", (req, res) => {
 //You'll need to find a way to give each note a unique id 
 //when it's saved (look into npm packages that could do this 
 //for you).
-app.post ("/api/notes", (req, res) => {
-  console.info(`${req.method} note received to add a review`);
+app.post('/api/notes', (req, res) => {
+  // Log that a POST request was received
+  console.info(`${req.method} request received to add a note`);
 
   // Destructuring assignment for the items in req.body
-  const { title, text, } = req.body;
+  const { title, text } = req.body;
 
   // If all the required properties are present
-  if (title && text ) {
+  if (title && text) {
     // Variable for the object we will save
     const newNote = {
       title,
       text,
-      note_id : uuid(),
+      id: uuid(),
     };
 
-    const note = {
-      status: 'success',
-      body: newNote,
-    };
+    // Read the existing notes from db.json file
+    fs.readFile('./db/db.json', 'utf8', (err, data) => {
+      if (err) {
+        console.error(err);
+        return res.status(500).json({ error: 'Failed to read notes data' });
+      }
 
-    console.log(note);
-    res.status(201).json(note);
+      // Parse existing notes data into an array
+      const notes = JSON.parse(data);
+
+      // Add the new note to the array
+      notes.push(newNote);
+
+      // Write the updated notes array back to the db.json file
+      fs.writeFile('./db/db.json', JSON.stringify(notes, null, 2), 'utf8', (err) => {
+        if (err) {
+          console.error(err);
+          return res.status(500).json({ error: 'Failed to save note' });
+        }
+
+        // Send the new note back to the client
+        const note = {
+          status: 'success',
+          body: newNote,
+        };
+
+        console.log(note);
+        res.status(201).json(note);
+      });
+    });
   } else {
     res.status(500).json('Error in posting note');
   }
 });
+    
+  
 
 
 //You haven’t learned how to handle DELETE requests, 
@@ -83,7 +118,21 @@ app.post ("/api/notes", (req, res) => {
 //remove the note with the given id property, and then 
 //rewrite the notes to the db.json file.
 app.delete ("/api/notes/:id", (req, res) => {
+  
+  fs.readFile('./db/db.json', 'utf8', (err, data) => {
+    if (err) {
+        console.error(err);
+        return res.status(500).json({ error: 'Failed to read notes data' });
+    }
+      
+  })
 })
+
+//GET * should return the index.html file.
+app.get("*", (req, res) => {
+  res.sendFile(path.join(__dirname, './public/index.html'))
+
+});
 
 app.listen(PORT, () =>
   console.log(`App listening at http://localhost:${PORT}`)
