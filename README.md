@@ -8,11 +8,8 @@
 
 ![Screenshot (99)](https://github.com/RileyGlander/Rileys-Express-Note-Taker/assets/142702948/0de36135-e152-4cc4-958d-febcf345e7a7)
 
-![Screenshot (100)](https://github.com/RileyGlander/Rileys-Express-Note-Taker/assets/142702948/2a3cfcee-3d57-4aa8-aa2e-e6e69545e6a7)
+![2024-05-0814-53-00-ezgif com-video-to-gif-converter (1)](https://github.com/RileyGlander/Rileys-Express-Note-Taker/assets/142702948/c76b6e6d-3747-4dc5-b699-ab4b438a740d)
 
-## Video
-While a video is not a requirement for module 11, I believe it would greatly enhance the explanation of my application.
-https://drive.google.com/file/d/1MsVJn964lQwP7yGs148OIwbEIO0mm9IX/view
 
 ## Installation
 You can install this with git bash by typing in 'git clone Replace this with link' to wherever you want the repository to be installed on your computer.
