@@ -6,7 +6,8 @@
 - What problem does it solve? It solves the problem of trying to remember everything. With this project you can write whatever it is you want to jot down so you can look back at it at any point.
 - What did you learn? While creating this application I was able to learn and get a better understanding of express and server side routing.
 
-![Screenshot (99)](https://github.com/RileyGlander/Rileys-Express-Note-Taker/assets/142702948/0de36135-e152-4cc4-958d-febcf345e7a7)
+![Screenshot (17)](https://github.com/RileyGlander/Rileys-Express-Note-Taker/assets/142702948/e67340f3-dabb-451c-ad68-08dd1024ca77)
+
 
 ![2024-05-0814-53-00-ezgif com-video-to-gif-converter (1)](https://github.com/RileyGlander/Rileys-Express-Note-Taker/assets/142702948/c76b6e6d-3747-4dc5-b699-ab4b438a740d)
 
